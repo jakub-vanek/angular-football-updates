@@ -64,32 +64,29 @@ export class ApiFootballService {
           }),
         );
     }
+    console.error('Failed to get leagueId from country:', country);
     return EMPTY;
   }
 
   public getResults(country: string, teamId: number): Observable<Result[]> {
-    const leagueId = this.getLeagueId(country);
-    if (leagueId) {
-      const season = this.seasonService.getCurrentSeason();
-      console.log('getStandings', country, season, teamId);
-      return this.http
-        .get<ResultsResponse>(
-          `${this.apiUrl}/fixtures?team=${teamId}&season=${season}&last=${this.resultsToLoad}`,
-          { headers: this.apiHeaders },
-        )
-        .pipe(catchError(this.handleError))
-        .pipe(
-          map((s: ResultsResponse) => {
-            if (s.response.length > 0) {
-              return s.response;
-            } else {
-              console.error(s.errors);
-              return [];
-            }
-          }),
-        );
-    }
-    return EMPTY;
+    const season = this.seasonService.getCurrentSeason();
+    console.log('getResults', country, season, teamId);
+    return this.http
+      .get<ResultsResponse>(
+        `${this.apiUrl}/fixtures?team=${teamId}&season=${season}&last=${this.resultsToLoad}`,
+        { headers: this.apiHeaders },
+      )
+      .pipe(catchError(this.handleError))
+      .pipe(
+        map((s: ResultsResponse) => {
+          if (s.response.length > 0) {
+            return s.response;
+          } else {
+            console.error(s.errors);
+            return [];
+          }
+        }),
+      );
   }
 
   private handleError(error: HttpErrorResponse) {
