@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  font-family: sans-serif;
+}
+table {
+  margin-top: 2em;
+}
+table td {
+  padding: 0.5em 1em;
+}
+.clickable {
+  cursor: pointer;
+}
+.clickable:hover {
+  background-color: #c4c4c4;
+}
+.logo {
+  height: 1.5em;
+}
+#country-select span {
+  padding: 0.5em 1em;
+}
+#country-select span.selected {
+  font-weight: bold;
+  text-decoration: underline;
+}

@@ -1,0 +1,36 @@
+<country-select (selectedCountryEvent)="setCountry($event)"></country-select>
+
+<div *ngIf="country !== undefined && standings.length > 0">
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th>Name</th>
+        <th>Games</th>
+        <th>W</th>
+        <th>L</th>
+        <th>D</th>
+        <th>Goal Difference</th>
+        <th>Points</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let s of standings">
+      <tr>
+        <td>{{ s.rank }}</td>
+        <td><img class="logo" src="{{ s.team.logo }}" /></td>
+        <td>
+          <span class="clickable" (click)="openResults(s.team.id)">{{
+            s.team.name
+          }}</span>
+        </td>
+        <td>{{ s.all.played }}</td>
+        <td>{{ s.all.win }}</td>
+        <td>{{ s.all.lose }}</td>
+        <td>{{ s.all.draw }}</td>
+        <td>{{ s.goalsDiff }}</td>
+        <td>{{ s.points }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

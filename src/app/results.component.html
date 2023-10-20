@@ -1,0 +1,15 @@
+<table>
+  <tbody *ngFor="let r of results">
+    <tr>
+      <td><img class="logo" src="r.teams.home.logo" /></td>
+      <td>{{ r.teams.home.name }}</td>
+      <td>{{ r.goals.home }}</td>
+      <td>-</td>
+      <td>{{ r.goals.away }}</td>
+      <td>{{ r.teams.away.name }}</td>
+      <td><img class="logo" src="r.teams.away.logo" /></td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<span class="clickable" (click)="goBack()">Back</span>

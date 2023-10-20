@@ -1,0 +1,11 @@
+<div id="country-select">
+  <ng-template ngFor let-country [ngForOf]="countries">
+    <span
+      id="{{ country }}Select"
+      class="clickable"
+      [ngClass]="{ selected: country === selectedCountry }"
+      (click)="selectCountry(country)"
+      >{{ country }}</span
+    >
+  </ng-template>
+</div>
